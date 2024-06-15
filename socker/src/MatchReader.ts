@@ -1,6 +1,10 @@
-import { CsvReader } from "./CsvReader";
+import { dateStringtoDate } from './utils';
 import { MatchResult } from "./MatchResult";
-import { dateStringtoDate } from "./utils";
+
+interface DataReader {
+    read(): void;
+    data: string[][];
+}
 
 type MatchData = [
     Date,
@@ -12,16 +16,26 @@ type MatchData = [
     string
 ];
 
-export class MatchReader extends CsvReader<MatchData>{
-    mapRow(row: string[]): MatchData {
-        return [
-            dateStringtoDate(row[0]),
-            row[1],
-            row[2],
-            parseInt(row[3]),
-            parseInt(row[4]),
-            row[5] as MatchResult,
-            row[6]
-        ];
+export class MatchReader {
+
+    matches: MatchData[] = [];
+    constructor(public reader: DataReader) { }
+
+    load(): void {
+        this.reader.read();
+        this.reader.data.map(
+            (row: string[]): MatchData => {
+                return [
+                    dateStringtoDate(row[0]),
+                    row[1],
+                    row[2],
+                    parseInt(row[3]),
+                    parseInt(row[4]),
+                    row[5] as MatchResult,
+                    row[6]
+                ];
+            })
     }
+
+
 }
