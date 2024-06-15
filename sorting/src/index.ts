@@ -1,6 +1,5 @@
-import { Sorter } from './sorter';
 import { NumbersCollection } from './NumbersCollection';
-import { CharacterCollection } from './CharactersCOllection';
+import { CharacterCollection } from './CharactersCollection';
 import { LinkedList } from './LinkedList';
 
 

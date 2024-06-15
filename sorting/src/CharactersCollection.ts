@@ -1,4 +1,4 @@
-import { Sorter } from './sorter';
+import { Sorter } from './Sorter';
 
 export class CharacterCollection extends Sorter{
     constructor( public data: string) {
